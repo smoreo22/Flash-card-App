@@ -1,66 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const CardForm = ({
   onSubmit,
-  onCancel,
-  cardInfo,
-  setCardInfo,
-  submitLabel,
-  cancelLabel,
+  onDone,
+  initialState,
+  doneButtonLabel = "Done",
 }) => {
-  const inputChangeHandler = (event) => {
-    setCardInfo({ ...cardInfo, [event.target.info]: event.target.value });
-  };
+  const [card, setCard] = useState(initialState);
+
+  function changeHandler({ target: { name, value } }) {
+    setCard((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  }
+
+  function submitHandler(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    onSubmit({ ...card });
+    setCard({ front: "", back: "" });
+  }
+
   return (
-    <form onSubmit={onSubmit}>
-      <div className="form-group">
-        <label htmlFor="card-front">Front</label>
-        <textarea
-          id="card-front"
-          name="front"
-          value={cardInfo.front}
-          onChange={inputChangeHandler}
-          placeholder="Front side of card"
-          required
-          className="form-control"
-          rows="3"
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="card-back">Back</label>
-        <textarea
-          id="card-back"
-          name="back"
-          value={cardInfo.back}
-          onChange={inputChangeHandler}
-          placeholder="Back side of card"
-          required
-          className="form-control"
-          rows="3"
-        />
-      </div>
-      <div
-        className="btn-toolbar"
-        role="toolbar"
-        aria-label="Toolbar with button groups"
-      >
-        <div className="btn-group mr-2" role="group" aria-label="First group">
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={onCancel}
-          >
-            {cancelLabel}
-          </button>
+    <form onSubmit={submitHandler} className="card-form">
+      <fieldset>
+        <div className="form-group">
+          <label htmlFor="front">Front</label>
+          <textarea
+            id="front"
+            name="front"
+            tabIndex="1"
+            className="form-control"
+            required={true}
+            placeholder="Front side of card"
+            value={card.front}
+            onChange={changeHandler}
+          />
         </div>
-        <div className="btn-group" role="group" aria-label="First group">
-          <button type="submit" className="btn btn-primary">
-            {submitLabel}
-          </button>
+        <div className="form-group">
+          <label htmlFor="back">Back</label>
+          <textarea
+            id="back"
+            name="back"
+            tabIndex="2"
+            className="form-control"
+            required={true}
+            placeholder="Back side of card"
+            value={card.back}
+            onChange={changeHandler}
+          />
         </div>
-      </div>
+
+        <button
+          className="btn btn-secondary mr-2"
+          onClick={onDone}
+          tabIndex="4"
+        >
+          {doneButtonLabel}
+        </button>
+        <button type="submit" className="btn btn-primary" tabIndex="3">
+          Save
+        </button>
+      </fieldset>
     </form>
   );
 };
-
-

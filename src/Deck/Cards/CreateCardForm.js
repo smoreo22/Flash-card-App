@@ -1,46 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { createCard } from "../../utils/api";
+import { useHistory, useParams } from "react-router-dom";
+import { createCard, readDeck } from "../../utils/api";
 import { CardForm } from "../../Forms/CardForm.js";
 
-export const CreateCardForm = ({ deckInfo: { id = 0 } }) => {
+export const CreateCardForm = () => {
   const history = useHistory();
 
-  const initialCardInfo = {
-    front: "",
-    back: "",
-    deckId: id,
-  };
-  const [cardInfo, setCardInfo] = useState(initialCardInfo);
-
+  const { deckId } = useParams();
+  const [deck, setDeck] = useState({ cards: [] });
 
   useEffect(() => {
-    setCardInfo({ ...cardInfo, deckId: id });
-  }, [id]);
+    readDeck(deckId).then(setDeck);
+  }, [deckId]);
 
+  function submitHandler(card) {
+    createCard(deckId, card);
+  }
 
-  const handleCreateCard = async (evt) => {
-    evt.preventDefault();
-    const controller = new AbortController();
-    await createCard(cardInfo.deckId, cardInfo, controller.signal);
-    setCardInfo(initialCardInfo);
-    history.go(0);
-  };
-  const onCancel = () => {
-    setCardInfo(initialCardInfo);
-    history.push(`/decks/${cardInfo.deckId}`);
-  };
+  function doneHandler() {
+    history.push(`/decks/${deckId}`);
+  }
 
   return (
-    <React.Fragment>
+    <div>
       <CardForm
-        onSubmit={handleCreateCard}
-        onCancel={onCancel}
-        cardInfo={cardInfo}
-        setCardInfo={setCardInfo}
-        submitLabel="Save"
-        cancelLabel="Done"
+        initialState={deck}
+        onSubmit={submitHandler}
+        onDone={doneHandler}
       />
-    </React.Fragment>
+    </div>
   );
 };

@@ -3,12 +3,12 @@ import { DeckCreatePage } from "./DeckCreatePage";
 import { DeckNav } from "./DeckNav";
 
 const CreateDeck = () => {
- // return 
+ return (
   <div>
     <DeckNav />
     <h2>Create Deck</h2>
     <DeckCreatePage />
-  </div>
+  </div>)
 };
 
 export default CreateDeck;

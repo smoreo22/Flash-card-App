@@ -9,7 +9,7 @@ const CreateCard = () => {
 
   const [deckInfo, setDeckInfo] = useState({ cards: [] });
 
- useEffect(() => {
+  useEffect(() => {
     const controller = new AbortController();
     async function readDeckInfo() {
       try {
@@ -34,4 +34,3 @@ const CreateCard = () => {
   );
 };
 export default CreateCard;
-
