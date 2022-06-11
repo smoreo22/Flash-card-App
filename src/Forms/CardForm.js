@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const CardForm = ({
   onSubmit,
@@ -7,6 +7,10 @@ export const CardForm = ({
   doneButtonLabel = "Done",
 }) => {
   const [card, setCard] = useState(initialState);
+
+  useEffect(() => {
+    setCard(initialState)
+  },[initialState])
 
   function changeHandler({ target: { name, value } }) {
     setCard((prevState) => ({
@@ -21,7 +25,7 @@ export const CardForm = ({
     onSubmit({ ...card });
     setCard({ front: "", back: "" });
   }
-
+  
   return (
     <form onSubmit={submitHandler} className="card-form">
       <fieldset>
