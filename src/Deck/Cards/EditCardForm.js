@@ -1,33 +1,35 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { updateCard } from "../../utils/api";
+import { updateCard, readDeck } from "../../utils/api";
 import { CardForm } from "../../Forms/CardForm";
 
-export const EditCardForm = ({ cardInfo, setCardInfo, initialCardInfo }) => {
+export const EditCardForm = ({ cardInfo, setCardInfo, initialCardInfo, setEdited }) => {
   const history = useHistory();
   const { deckId } = useParams();
 
- const handleEditCard = async (evt) => {
-    evt.preventDefault();
+ const handleEditCard = async (card) => {
     const controller = new AbortController();
-    await updateCard(cardInfo, controller.signal);
+    await updateCard(card, controller.signal);
+    setEdited(true)
+    console.log("card updated")
+    // await readDeck(deckId)
     history.push(`/decks/${deckId}`);
+    // history.go(-1)
   };
-  const onCancel = () => {
+  const onDone = () => {
     setCardInfo(initialCardInfo);
     history.push(`/decks/${deckId}`);
   };
 
   return (
-    <React.Fragment>
+ 
       <CardForm
         onSubmit={handleEditCard}
-        onCancel={onCancel}
-        cardInfo={cardInfo}
-        setCardInfo={setCardInfo}
-        submitLabel="Submit"
-        cancelLabel="Cancel"
+        onDone={onDone}
+        initialState={cardInfo}
+        // submitLabel="Submit"
+        // cancelLabel="Cancel"
       />
-    </React.Fragment>
+   
   );
 };

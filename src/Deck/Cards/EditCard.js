@@ -4,7 +4,7 @@ import { readDeck, readCard } from "../../utils/api";
 import { EditCardForm } from "./EditCardForm.js";
 import { EditCardNav } from "./EditCardNav.js";
 
-const EditCard = () => {
+const EditCard = ({setEdited}) => {
   const { deckId, cardId } = useParams();
 
   const [deckInfo, setDeckInfo] = useState({ cards: [] });
@@ -49,6 +49,7 @@ const EditCard = () => {
         cardInfo={cardInfo}
         setCardInfo={setCardInfo}
         initialCardInfo={initialCardInfo}
+        setEdited={setEdited}
       />
     </React.Fragment>
   );

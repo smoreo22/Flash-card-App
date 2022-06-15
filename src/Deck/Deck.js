@@ -18,22 +18,24 @@ function Deck() {
   } = useRouteMatch();
 
   const [deckInfo, setDeckInfo] = useState({ cards: [] });
+  const [edited, setEdited] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController();
     async function readDeckInfo() {
       try {
-        const data = await readDeck(deckId, controller.sginal);
+        const data = await readDeck(deckId, controller.signal);
         setDeckInfo(data);
+        // setEdited(false)
       } catch (error) {
         console.log(error);
       }
     }
-    readDeckInfo();
+    if (!edited) readDeckInfo();
     return () => {
       controller.abort();
     };
-  }, [deckId]);
+  } , [deckId, edited]);
 
   const handleDelete = async (item) => {
     if ("deckId" in item) {
@@ -71,10 +73,10 @@ function Deck() {
           <StudyPage deckInfo={deckInfo} />
         </Route>
         <Route path={`${path}/cards/new`}>
-          <CreateCard />
+          <CreateCard setEdited={setEdited} />
         </Route>
         <Route path={`${path}/cards/:cardId/edit`}>
-          <EditCard />
+          <EditCard setEdited={setEdited} />
         </Route>
         <Route path={`${path}`}>
           <DeckDisplay

@@ -4,7 +4,7 @@ import { readDeck } from "../../utils/api";
 import { CreateCardForm } from "./CreateCardForm.js";
 import { CreateCardNav } from "./CreateCardNav.js";
 
-const CreateCard = () => {
+const CreateCard = ({setEdited}) => {
   const { deckId } = useParams();
 
   const [deckInfo, setDeckInfo] = useState({ cards: [] });
@@ -15,12 +15,16 @@ const CreateCard = () => {
       try {
         const data = await readDeck(deckId, controller.sginal);
         setDeckInfo(data);
+
       } catch (error) {
         console.log(error);
       }
     }
+    setEdited(true)
     readDeckInfo();
+    //executes when card is destroyed
     return () => {
+      setEdited(false)
       controller.abort();
     };
   }, [deckId]);
@@ -29,7 +33,7 @@ const CreateCard = () => {
     <React.Fragment>
       <CreateCardNav deckInfo={deckInfo} />
       <h3>{deckInfo.name}: Add Card</h3>
-      <CreateCardForm deckInfo={deckInfo} />
+      <CreateCardForm deckInfo={deckInfo} setEdited={setEdited}/>
     </React.Fragment>
   );
 };
