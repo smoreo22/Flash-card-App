@@ -25,7 +25,7 @@ export const CardForm = ({
     onSubmit({ ...card });
     setCard({ front: "", back: "" });
   }
-// console.log("cardForm", initialState, card)
+
   return (
     <form onSubmit={submitHandler} className="card-form">
       <fieldset>

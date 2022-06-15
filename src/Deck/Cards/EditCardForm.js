@@ -11,10 +11,7 @@ export const EditCardForm = ({ cardInfo, setCardInfo, initialCardInfo, setEdited
     const controller = new AbortController();
     await updateCard(card, controller.signal);
     setEdited(true)
-    console.log("card updated")
-    // await readDeck(deckId)
     history.push(`/decks/${deckId}`);
-    // history.go(-1)
   };
   const onDone = () => {
     setCardInfo(initialCardInfo);

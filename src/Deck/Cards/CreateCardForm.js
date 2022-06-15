@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { createCard, readDeck } from "../../utils/api";
 import { CardForm } from "../../Forms/CardForm.js";
@@ -15,7 +15,7 @@ export const CreateCardForm = ({ setEdited }) => {
   };
 
   useEffect(() => {
-    readDeck(deckId).then(setDeck);
+    readDeck(deckId)
   }, [deckId]);
 
   function submitHandler(card) {
