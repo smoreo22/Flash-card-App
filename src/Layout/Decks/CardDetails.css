@@ -1,0 +1,13 @@
+
+.card-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .card-content {
+    display: flex;
+  }
+  
+  .card-content p {
+    flex: 1;
+  }

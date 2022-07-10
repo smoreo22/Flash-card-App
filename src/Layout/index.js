@@ -1,27 +1,28 @@
 import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
-import Home from "../Home/Home";
-import CreateDeck from "../CreateDeck/CreateDeck";
-import Deck from "../Deck/Deck";
+import Home from "./Home/Home";
+import CreateDeck from "./Decks/CreateDeck";
+import DeckRoutes from "./Decks/DeckRoutes";
 import { Switch, Route } from "react-router-dom";
+import "./index.css";
 
 function Layout() {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className='container'>
         <Switch>
-          <Route exact path="/">
+          <Route exact={true} path='/'>
             <Home />
           </Route>
-          <Route path="/decks/new">
+          <Route exact={true} path='/decks/new'>
             <CreateDeck />
           </Route>
-          <Route path="/decks/:deckId">
-            <Deck />
+          <Route path='/decks/:deckId'>
+            <DeckRoutes />
           </Route>
-          <Route>
+          <Route path='/'>
             <NotFound />
           </Route>
         </Switch>

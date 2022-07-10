@@ -11,24 +11,9 @@
       "id": 2
     },
     {
-      "name": "new deck",
-      "description": "New deck test",
+      "name": "New deck",
+      "description": "New test deck1",
       "id": 3
-    },
-    {
-      "name": "new deck",
-      "description": "new deck desc.",
-      "id": 4
-    },
-    {
-      "name": "new",
-      "description": "new deck",
-      "id": 5
-    },
-    {
-      "name": "h;j",
-      "description": "h;hjkl;kl",
-      "id": 6
     }
   ],
   "cards": [
@@ -70,66 +55,22 @@
       "id": 6
     },
     {
-      "cards": [],
-      "front": "front of card",
-      "back": "back of card",
+      "front": "front card 1",
+      "back": "back card 1\n",
       "deckId": 3,
       "id": 7
     },
     {
-      "front": "card2",
-      "back": "card2 back",
+      "front": "front card 2",
+      "back": "back card 2",
       "deckId": 3,
       "id": 8
     },
     {
-      "cards": [],
-      "front": "card 3 front",
-      "back": "card 3 back sgfjers",
+      "front": "front card 3",
+      "back": "back card 3",
       "deckId": 3,
       "id": 9
-    },
-    {
-      "front": "new card",
-      "back": "new car back",
-      "deckId": 3,
-      "id": 10
-    },
-    {
-      "front": "front",
-      "back": "back ",
-      "deckId": 4,
-      "id": 11
-    },
-    {
-      "front": "front 7",
-      "back": "back",
-      "deckId": 5,
-      "id": 12
-    },
-    {
-      "front": "card",
-      "back": "back",
-      "deckId": 5,
-      "id": 13
-    },
-    {
-      "front": "front",
-      "back": "back",
-      "deckId": 5,
-      "id": 14
-    },
-    {
-      "front": "b,n",
-      "back": "b,",
-      "deckId": 5,
-      "id": 15
-    },
-    {
-      "front": "kj;jkl;",
-      "back": "k;ljk;l",
-      "deckId": 6,
-      "id": 16
     }
   ]
 }
