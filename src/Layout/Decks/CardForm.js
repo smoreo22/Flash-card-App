@@ -16,34 +16,34 @@ function CardForm({ handleSubmit, handleCancel, card }) {
   };
   return (
     <form onSubmit={submit}>
-      <div className='form-group'>
-        <label htmlFor='front'>Front</label>
+      <div className="form-group">
+        <label htmlFor="front">Front</label>
         <textarea
-          className='form-control'
-          type='text'
-          id='front'
-          name='front'
-          placeholder='Front side of card'
+          className="form-control"
+          type="text"
+          id="front"
+          name="front"
+          placeholder="Front side of card"
           value={cardInfo?.front || ""}
           onChange={updateForm}
           required
         ></textarea>
       </div>
-      <div className='form-group'>
-        <label htmlFor='back'>Back</label>
+      <div className="form-group">
+        <label htmlFor="back">Back</label>
         <textarea
-          className='form-control'
-          name='back'
-          id='back'
-          placeholder='Back side of card'
+          className="form-control"
+          name="back"
+          id="back"
+          placeholder="Back side of card"
           value={cardInfo?.back || ""}
           onChange={updateForm}
           required
         ></textarea>
-        <button className='btn btn-secondary my-2' onClick={handleCancel}>
+        <button className="btn btn-secondary my-2" onClick={handleCancel}>
           Done
         </button>
-        <button type='submit' className='btn btn-primary my-2'>
+        <button type="submit" className="btn btn-primary my-2">
           Save
         </button>
       </div>

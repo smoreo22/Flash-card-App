@@ -53,23 +53,23 @@ function AddCard() {
 
   return (
     <div>
-      <nav aria-label='breadcrumb'>
-        <ol className='breadcrumb'>
-          <li className='breadcrumb-item'>
-            <Link to='/'>
-              <i className='bi bi-house-door-fill'></i> Home
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/">
+              <i className="bi bi-house-door-fill"></i> Home
             </Link>
           </li>
-          <li className='breadcrumb-item'>
+          <li className="breadcrumb-item">
             <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
-          <li className='breadcrumb-item active' aria-current='page'>
+          <li className="breadcrumb-item active" aria-current="page">
             Add Card
           </li>
         </ol>
       </nav>
       <h1>{deck.name}: Add Card</h1>
-      <div className='card-toast alert alert-success hidden'>Card Added!</div>
+      <div className="card-toast alert alert-success hidden">Card Added!</div>
       <CardForm handleSubmit={handleSubmit} handleCancel={handleCancel} />
     </div>
   );
